@@ -1,0 +1,6 @@
+YAJP is a simple json parser written in python.
+
+This inspiration for this project comes from douglascrockford/JSON-js.
+https://github.com/douglascrockford/JSON-js
+
+I think I'll write some more scripts in python to map that whole project which is written in javascript .
