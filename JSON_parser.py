@@ -5,7 +5,7 @@ class YAJP:
                         '/': '/', 'b': 'b',
                         'f': '\f', 'n': '\n',
                         'r': '\r', 't': '\t'}
-
+        # end mark: when finish parsing , we set the current_char to END
         self.END = 'END'
         self.json = json
         self.json_length = len(json)
@@ -26,7 +26,7 @@ class YAJP:
                            ': ' + self.current_char)
                 
             tmp = self.current_char
-            while '0' <= self.next() <= '9':
+            while '0' <= self.next().current_char <= '9':
                 tmp += self.current_char
             return tmp
 
@@ -81,6 +81,7 @@ class YAJP:
 
             else: string += self.current_char
 
+
     # parse object
     def object(self):
         obj = {}
@@ -116,15 +117,15 @@ class YAJP:
     def word(self):
         # true -> True
         if self.current_char == 't':
-            self.next('r').next('u').next('e')
+            self.next('t').next('r').next('u').next('e')
             return True
         # false -> False
         elif self.current_char == 'f':
-            self.next('a').next('l').next('s').next('e')
+            self.next('f').next('a').next('l').next('s').next('e')
             return False
         # null -> None
         elif self.current_char == 'n':
-            self.next('u').next('l').next('l')
+            self.next('n').next('u').next('l').next('l')
             return None
         else:
             self.error('CheckFailAt '+ str(self.current_pos)+ 
@@ -137,8 +138,9 @@ class YAJP:
     # First do the checking then Update the current_char
     def next(self,check=None):
         if check and self.current_char != check:
+            print self.json[:self.current_pos]
             self.error('CheckFailAt '+ str(self.current_pos)+
-                       ': '+ self.current_char +'check : '+ check)
+                       ': '+ self.current_char +' check : '+ check)
 
         if self.current_pos == self.json_length:
             self.current_char = self.END
