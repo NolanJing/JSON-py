@@ -172,7 +172,7 @@ class YAJP:
         ##################################################
         # WHY the following code won't work?             #
         # If you see this, Please help me figure it out. #
-        # Any help will be highly appreciated            #
+        # Any help will be highly appreciated!           #
         ##################################################
         # switch =  {'{': self.object,
         #            '[': self.array,
@@ -193,5 +193,3 @@ class YAJP:
     # Error Handler
     def error(self,m):
         raise RuntimeError(m)
-
-
